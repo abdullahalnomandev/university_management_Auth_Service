@@ -3,7 +3,7 @@ import cors from 'cors'
 
 const app: Application = express()
 
-                       app.use(cors({ origin: '*' }))
+app.use(cors({ origin: '*' }))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
