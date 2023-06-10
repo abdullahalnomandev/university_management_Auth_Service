@@ -1,45 +1,50 @@
 {
-  "keep": {
-    "days": true,
-    "amount": 14
-  },
-  "auditLog": "D:\\Next_Level\\university-management\\logs\\winston\\success\\.a6ef8bfff3cd319fea452dc261c7bef0b391ea9a-audit.json",
-  "files": [
-    {
-      "date": 1685726120389,
-      "name": "D:\\Next_Level\\university-management\\logs\\winston\\success\\phu-2023-02-06-23-error.log",
-      "hash": "b188e99c1e90c4ce4ab046617b3c8ffe046df436c55ab3f7cb48cc368981ff62"
+    "keep": {
+        "days": true,
+        "amount": 14
     },
-    {
-      "date": 1685924459462,
-      "name": "D:\\Next_Level\\university-management\\logs\\winston\\success\\phu-2023-05-06-06-error.log",
-      "hash": "2d4bbcabc2cd26ed267d92594c44e899fa1ab439b3b255e41320d3b690e7c8f1"
-    },
-    {
-      "date": 1685926862269,
-      "name": "D:\\Next_Level\\university-management\\logs\\winston\\success\\phu-2023-05-06-07-error.log",
-      "hash": "1e3f6fba87af7547ffa1e0387cc1d9dd9d7446e720623b5e562f08b9223c135e"
-    },
-    {
-      "date": 1686016912918,
-      "name": "D:\\Next_Level\\university-management\\logs\\winston\\success\\phu-2023-06-06-08-error.log",
-      "hash": "ccdf79488fab73f4a9d1348fd5d3a495fb3c1ab603aec5f3b1b66299a22e90b2"
-    },
-    {
-      "date": 1686094105556,
-      "name": "D:\\Next_Level\\university-management\\logs\\winston\\success\\phu-2023-07-06-05-error.log",
-      "hash": "5be7ec486698666519c288597e54a8b7e44d18e2a310e02cd81d1bef00dcec57"
-    },
-    {
-      "date": 1686097698781,
-      "name": "D:\\Next_Level\\university-management\\logs\\winston\\success\\phu-2023-07-06-06-error.log",
-      "hash": "46bd2d8223a66ce51dba73bd9f46bf719c9633b613ef81e70e81d00f7881dfde"
-    },
-    {
-      "date": 1686099666173,
-      "name": "D:\\Next_Level\\university-management\\logs\\winston\\success\\phu-2023-07-06-07-error.log",
-      "hash": "1a0f8bc7751dcfa953e4bef36b62c83b308c2e003055abf2787d9fe20a383a35"
-    }
-  ],
-  "hashType": "sha256"
+    "auditLog": "D:\\Next_Level\\university-management\\logs\\winston\\success\\.a6ef8bfff3cd319fea452dc261c7bef0b391ea9a-audit.json",
+    "files": [
+        {
+            "date": 1685726120389,
+            "name": "D:\\Next_Level\\university-management\\logs\\winston\\success\\phu-2023-02-06-23-error.log",
+            "hash": "b188e99c1e90c4ce4ab046617b3c8ffe046df436c55ab3f7cb48cc368981ff62"
+        },
+        {
+            "date": 1685924459462,
+            "name": "D:\\Next_Level\\university-management\\logs\\winston\\success\\phu-2023-05-06-06-error.log",
+            "hash": "2d4bbcabc2cd26ed267d92594c44e899fa1ab439b3b255e41320d3b690e7c8f1"
+        },
+        {
+            "date": 1685926862269,
+            "name": "D:\\Next_Level\\university-management\\logs\\winston\\success\\phu-2023-05-06-07-error.log",
+            "hash": "1e3f6fba87af7547ffa1e0387cc1d9dd9d7446e720623b5e562f08b9223c135e"
+        },
+        {
+            "date": 1686016912918,
+            "name": "D:\\Next_Level\\university-management\\logs\\winston\\success\\phu-2023-06-06-08-error.log",
+            "hash": "ccdf79488fab73f4a9d1348fd5d3a495fb3c1ab603aec5f3b1b66299a22e90b2"
+        },
+        {
+            "date": 1686094105556,
+            "name": "D:\\Next_Level\\university-management\\logs\\winston\\success\\phu-2023-07-06-05-error.log",
+            "hash": "5be7ec486698666519c288597e54a8b7e44d18e2a310e02cd81d1bef00dcec57"
+        },
+        {
+            "date": 1686097698781,
+            "name": "D:\\Next_Level\\university-management\\logs\\winston\\success\\phu-2023-07-06-06-error.log",
+            "hash": "46bd2d8223a66ce51dba73bd9f46bf719c9633b613ef81e70e81d00f7881dfde"
+        },
+        {
+            "date": 1686099666173,
+            "name": "D:\\Next_Level\\university-management\\logs\\winston\\success\\phu-2023-07-06-07-error.log",
+            "hash": "1a0f8bc7751dcfa953e4bef36b62c83b308c2e003055abf2787d9fe20a383a35"
+        },
+        {
+            "date": 1686357724389,
+            "name": "D:\\Next_Level\\university-management\\logs\\winston\\success\\phu-2023-10-06-06-error.log",
+            "hash": "10d5451ba6c955dab1457b7f1ec74b1c666a908c0ea9f79482bb4e1f79f87b4f"
+        }
+    ],
+    "hashType": "sha256"
 }
