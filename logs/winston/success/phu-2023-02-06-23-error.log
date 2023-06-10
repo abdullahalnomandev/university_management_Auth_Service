@@ -1,4 +1,0 @@
-Fri Jun 02 2023 23:19:1 [right meow!] error: [31mFailed to connect.[39m The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
-Fri Jun 02 2023 23:20:32 [right meow!] error: [31mFailed to connect.[39m The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
-Fri Jun 02 2023 23:21:8 [right meow!] error: Failed to connect. The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
-Fri Jun 02 2023 23:21:31 [right meow!] error: Failed to connect. bad auth : Authentication failed.
