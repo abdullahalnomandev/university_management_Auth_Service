@@ -1,8 +1,8 @@
+import httpsStatus from 'http-status';
 import ApiError from '../../../errors/ApiError';
 import { IUser } from './user.interface';
 import { User } from './user.model';
 import { generatedUserId } from './user.utils';
-
 const createUser = async (user: IUser): Promise<IUser | null> => {
   // auto generated incremental id
   const id = await generatedUserId();
@@ -14,7 +14,7 @@ const createUser = async (user: IUser): Promise<IUser | null> => {
   // }
   const createdUser = await User.create(user);
   if (!createdUser) {
-    throw new ApiError(400, 'Failed to create user');
+    throw new ApiError(httpsStatus.BAD_REQUEST, 'Failed to create user');
   }
 
   return createdUser;
