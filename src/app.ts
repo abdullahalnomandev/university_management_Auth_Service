@@ -1,5 +1,6 @@
 import cors from 'cors';
-import express, { Application, Request } from 'express';
+import express, { Application, NextFunction, Request, Response } from 'express';
+import httpStatus from 'http-status';
 import globalErrorHandler from './app/middlewares/globalErrorHandler';
 import routers from './app/routes';
 const app: Application = express();
@@ -20,10 +21,20 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/v1/', routers);
 // Global Error Handler
-app.all('*', (req: Request) => {
-  throw new Error(`Can't find ${req.originalUrl} on this server`);
-});
-
 app.use(globalErrorHandler);
+
+app.use((req: Request, res: Response, next: NextFunction) => {
+  res.status(httpStatus.NOT_FOUND).json({
+    status: 'fail',
+    message: 'Not Found',
+    errorMessage: [
+      {
+        path: req.originalUrl,
+        message: 'API  Not Found',
+      },
+    ],
+  });
+  next();
+});
 
 export default app;
