@@ -11,7 +11,7 @@ import {
   IAcademicSemester,
 } from './academicSemester.interface';
 
-const AcademicSemesterModel = new Schema<IAcademicSemester>(
+const academicSemesterSchema = new Schema<IAcademicSemester>(
   {
     title: {
       type: String,
@@ -23,7 +23,7 @@ const AcademicSemesterModel = new Schema<IAcademicSemester>(
       },
     },
     year: {
-      type: Number,
+      type: String,
       required: true,
     },
     code: {
@@ -47,7 +47,7 @@ const AcademicSemesterModel = new Schema<IAcademicSemester>(
   }
 );
 
-AcademicSemesterModel.pre('save', async function (next) {
+academicSemesterSchema.pre('save', async function (next) {
   const isExist = await AcademicSemester.findOne({
     title: this.title,
     year: this.year,
@@ -64,5 +64,5 @@ AcademicSemesterModel.pre('save', async function (next) {
 
 export const AcademicSemester = model<IAcademicSemester, AcademicSemesterModel>(
   'AcademicSemester',
-  AcademicSemesterModel
+  academicSemesterSchema
 );
