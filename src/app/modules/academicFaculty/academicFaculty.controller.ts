@@ -1,14 +1,14 @@
-import { NextFunction, Request, RequestHandler, Response } from 'express';
+import { Request, RequestHandler, Response } from 'express';
 import httpStatus from 'http-status';
 import { paginationFields } from '../../../constants/pagination';
 import catchAsync from '../../../shared/catchAsync';
 import pick from '../../../shared/pick';
 import sendResponse from '../../../shared/sendResponse';
-import { academicFacultyFields } from './academicFaculty.constant';
+import { academicFacultyFilterableFields } from './academicFaculty.constant';
 import { AcademicFacultyService } from './academicFaculty.service';
 
 const createFaculty: RequestHandler = catchAsync(
-  async (req: Request, res: Response, next: NextFunction) => {
+  async (req: Request, res: Response) => {
     const { ...academicSemesterData } = req.body;
     const result = await AcademicFacultyService.createFaculty(
       academicSemesterData
@@ -19,12 +19,11 @@ const createFaculty: RequestHandler = catchAsync(
       message: 'Academic Faculty created successfully',
       data: result,
     });
-    next();
   }
 );
 
 const getAllFaculty = catchAsync(async (req: Request, res: Response) => {
-  const filters = pick(req.query, academicFacultyFields);
+  const filters = pick(req.query, academicFacultyFilterableFields);
   const paginationOption = pick(req.query, paginationFields);
   const result = await AcademicFacultyService.getAllFaculty(
     filters,

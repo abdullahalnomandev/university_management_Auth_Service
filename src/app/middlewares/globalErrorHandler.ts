@@ -70,7 +70,6 @@ const globalErrorHandler: ErrorRequestHandler = (
     errorMessages,
     stack: config.env !== 'production' ? error?.stack : undefined,
   });
-  // next();
 };
 
 export default globalErrorHandler;
