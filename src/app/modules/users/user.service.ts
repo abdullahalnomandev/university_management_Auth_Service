@@ -2,10 +2,10 @@ import httpsStatus from 'http-status';
 import ApiError from '../../../errors/ApiError';
 import { IUser } from './user.interface';
 import { User } from './user.model';
-import { generatedUserId } from './user.utils';
+import { generatedStudentId } from './user.utils';
 const createUser = async (user: IUser): Promise<IUser | null> => {
   // auto generated incremental id
-  const id = await generatedUserId();
+  const id = await generatedStudentId();
 
   user.id = id;
   // default password

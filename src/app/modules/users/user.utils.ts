@@ -9,7 +9,7 @@ export const findLastUserId = async () => {
   return lastUser?.id;
 };
 
-export const generatedUserId = async () => {
+export const generatedStudentId = async (): Promise<string> => {
   const currentId = (await findLastUserId()) || (0).toString().padStart(5, '0');
   const incrementedId = (Number(currentId) + 1).toString().padStart(5, '0');
   return incrementedId;
