@@ -77,12 +77,24 @@ const getSingleStudent = async (
     .populate('academicFaculty');
 };
 
-// const updateStudent= async (semesterId: string,payload: Partial<IStudent>): Promise<IStudent | null> => {
+const updateStudent = async (
+  studentId: string,
+  payload: Partial<IStudent>
+): Promise<IStudent | null> => {
+  // const isExist = await Student.findOne({studentId})
 
-//   return await Student.findOneAndUpdate({ _id: semesterId }, payload, {
-//     new: true,
-//   });
-// };
+  // if (!isExist) {
+  //   throw new ApiError(httpStatus.NOT_FOUND, 'Student not found');
+  // }
+
+  // const { name, guardian, localGuardian ,... studentData}=payload;
+
+  // const updatedStudentDate:Partial<IStudent> ={...studentData}
+
+  return await Student.findOneAndUpdate({ _id: studentId }, payload, {
+    new: true,
+  });
+};
 
 const deleteStudent = async (semesterId: string): Promise<IStudent | null> => {
   return await Student.findByIdAndDelete(semesterId)
@@ -94,6 +106,6 @@ const deleteStudent = async (semesterId: string): Promise<IStudent | null> => {
 export const StudentService = {
   getAllStudents,
   getSingleStudent,
-  //   updateStudent,
+  updateStudent,
   deleteStudent,
 };
