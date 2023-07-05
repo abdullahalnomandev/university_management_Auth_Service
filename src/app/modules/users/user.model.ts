@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
 
 import { IUser, UserModel } from './user.interface';
-const {ObjectId} = Schema.Types
+const { ObjectId } = Schema.Types;
 
 const userSchema = new Schema<IUser>(
   {
@@ -18,9 +18,9 @@ const userSchema = new Schema<IUser>(
       type: String,
       required: true,
     },
-    student:{
-      type:ObjectId, 
-      ref:'Student'
+    student: {
+      type: ObjectId,
+      ref: 'Student',
     },
     // faculty:{
     //   type:ObjectId,
