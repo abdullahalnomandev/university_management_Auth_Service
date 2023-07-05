@@ -12,10 +12,7 @@ import { AcademicDepartment } from './academicDepartment.model';
 const createDepartment = async (
   payload: IAcademicDepartment
 ): Promise<IAcademicDepartment> => {
-  return (await AcademicDepartment.create(payload)).populate(
-    'academicFaculty',
-    '_id title'
-  );
+  return (await AcademicDepartment.create(payload)).populate('academicFaculty');
 };
 
 const getAllDepartment = async (

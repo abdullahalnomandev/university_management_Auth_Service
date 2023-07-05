@@ -27,7 +27,7 @@ export const studentSchema = new Schema<IStudent, StudentModel>(
     dateOfBirth: {
       type: String,
     },
-    gender: { 
+    gender: {
       type: String,
       enum: gender,
     },
@@ -72,7 +72,7 @@ export const studentSchema = new Schema<IStudent, StudentModel>(
           type: String,
           unique: true,
         },
-        montherName: {
+        motherName: {
           type: String,
           required: true,
         },

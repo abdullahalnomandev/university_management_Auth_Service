@@ -6,8 +6,8 @@ import { UserService } from './user.service';
 
 const createStudent: RequestHandler = catchAsync(
   async (req: Request, res: Response) => {
-    const {student, ...userData } = req.body;
-    const result = await UserService.createStudent(student,userData);
+    const { student, ...userData } = req.body;
+    const result = await UserService.createStudent(student, userData);
     sendResponse(res, {
       statusCode: httpStatus.OK,
       status: 'success',
