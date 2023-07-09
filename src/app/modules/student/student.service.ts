@@ -1,4 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import httpStatus from 'http-status';
 import { SortOrder } from 'mongoose';
+import ApiError from '../../../errors/ApiError';
 import { paginationHelper } from '../../../helpers/paginationHeloper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOption } from '../../../interfaces/pagenation';
@@ -81,16 +84,41 @@ const updateStudent = async (
   studentId: string,
   payload: Partial<IStudent>
 ): Promise<IStudent | null> => {
-  // const isExist = await Student.findOne({studentId})
+  const isExist = await Student.findOne({ studentId });
 
-  // if (!isExist) {
-  //   throw new ApiError(httpStatus.NOT_FOUND, 'Student not found');
-  // }
+  if (!isExist) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Student not found');
+  }
 
-  // const { name, guardian, localGuardian ,... studentData}=payload;
+  const { name, guardian, localGuardian, ...studentData } = payload;
 
-  // const updatedStudentDate:Partial<IStudent> ={...studentData}
+  const updatedStudentData: Partial<IStudent> = { ...studentData };
 
+  // console.log(guardian, localGuardian);
+
+  // dynamically updating name
+  if (name && Object.keys(name).length > 0) {
+    Object.keys(name).forEach(key => {
+      const nameKey = `name.${key}`;
+      (updatedStudentData as any)[nameKey] = name[key as keyof typeof name];
+    });
+  }
+  // dynamically updating guardian
+  if (guardian && Object.keys(guardian).length > 0) {
+    Object.keys(guardian).forEach(key => {
+      const nameKey = `guardian.${key}`;
+      (updatedStudentData as any)[nameKey] = guardian[key as keyof typeof name];
+    });
+  }
+
+  // dynamically updating guardian
+  if (localGuardian && Object.keys(localGuardian).length > 0) {
+    Object.keys(localGuardian).forEach(key => {
+      const nameKey = `guardian.${key}`;
+      (updatedStudentData as any)[nameKey] =
+        localGuardian[key as keyof typeof name];
+    });
+  }
   return await Student.findOneAndUpdate({ _id: studentId }, payload, {
     new: true,
   });
