@@ -94,13 +94,29 @@ const updateStudent = async (
 
   const updatedStudentData: Partial<IStudent> = { ...studentData };
 
-  console.log(guardian, localGuardian);
+  // console.log(guardian, localGuardian);
 
-  // dynamically updating
+  // dynamically updating name
   if (name && Object.keys(name).length > 0) {
     Object.keys(name).forEach(key => {
       const nameKey = `name.${key}`;
       (updatedStudentData as any)[nameKey] = name[key as keyof typeof name];
+    });
+  }
+  // dynamically updating guardian
+  if (guardian && Object.keys(guardian).length > 0) {
+    Object.keys(guardian).forEach(key => {
+      const nameKey = `guardian.${key}`;
+      (updatedStudentData as any)[nameKey] = guardian[key as keyof typeof name];
+    });
+  }
+
+  // dynamically updating guardian
+  if (localGuardian && Object.keys(localGuardian).length > 0) {
+    Object.keys(localGuardian).forEach(key => {
+      const nameKey = `guardian.${key}`;
+      (updatedStudentData as any)[nameKey] =
+        localGuardian[key as keyof typeof name];
     });
   }
   return await Student.findOneAndUpdate({ _id: studentId }, payload, {
