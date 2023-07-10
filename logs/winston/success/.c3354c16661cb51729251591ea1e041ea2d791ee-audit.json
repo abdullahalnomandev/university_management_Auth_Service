@@ -6,26 +6,6 @@
     "auditLog": "D:\\Next_Level\\university-management\\logs\\winston\\success\\.c3354c16661cb51729251591ea1e041ea2d791ee-audit.json",
     "files": [
         {
-            "date": 1687527217712,
-            "name": "D:\\Next_Level\\university-management\\logs\\winston\\success\\phu-2023-23-06-19-success.log",
-            "hash": "c591fa0d8c44f00412385662f34b99ce955656ad1b08e44695c18f9c4bc0e931"
-        },
-        {
-            "date": 1687528805042,
-            "name": "D:\\Next_Level\\university-management\\logs\\winston\\success\\phu-2023-23-06-20-success.log",
-            "hash": "d43ced5de099fe77a4839afa1062f3d5bf1e1a3e55c78c0fab6b3e158aeba733"
-        },
-        {
-            "date": 1687543484705,
-            "name": "D:\\Next_Level\\university-management\\logs\\winston\\success\\phu-2023-24-06-00-success.log",
-            "hash": "a39ed2e30a7887cd808c49e611b22b56e4b156bd2a7b6dd112bb42b51e48f94b"
-        },
-        {
-            "date": 1687736678459,
-            "name": "D:\\Next_Level\\university-management\\logs\\winston\\success\\phu-2023-26-06-05-success.log",
-            "hash": "b6205e9a0ff9f32bbde529317a20ed7683b3fe0803ae12d8907779797f922a0c"
-        },
-        {
             "date": 1687738116168,
             "name": "D:\\Next_Level\\university-management\\logs\\winston\\success\\phu-2023-26-06-06-success.log",
             "hash": "555954df489a0847d883fdb9e0149819868bd6b62bb3a496f71344ad3315374e"
@@ -84,6 +64,16 @@
             "date": 1688720040403,
             "name": "D:\\Next_Level\\university-management\\logs\\winston\\success\\phu-2023-07-07-14-success.log",
             "hash": "2e0f83f3debf2ecb0603024d9858b0c1953f152db5cb8e25db4d79c47c038cd2"
+        },
+        {
+            "date": 1688945843122,
+            "name": "D:\\Next_Level\\university-management\\logs\\winston\\success\\phu-2023-10-07-05-success.log",
+            "hash": "415158dfa101b4a7dd3306dac759e7dc2ab577b19b58d8c91d93ca5845e80ecd"
+        },
+        {
+            "date": 1688947260699,
+            "name": "D:\\Next_Level\\university-management\\logs\\winston\\success\\phu-2023-10-07-06-success.log",
+            "hash": "c67bf4ec313c8bf6186c590bebf6cb6b58a39900e3502605ddd35d43819de7aa"
         }
     ],
     "hashType": "sha256"

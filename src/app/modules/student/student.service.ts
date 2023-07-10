@@ -84,7 +84,7 @@ const updateStudent = async (
   studentId: string,
   payload: Partial<IStudent>
 ): Promise<IStudent | null> => {
-  const isExist = await Student.findOne({ studentId });
+  const isExist = await Student.findOne({ id: studentId });
 
   if (!isExist) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Student not found');
@@ -106,20 +106,21 @@ const updateStudent = async (
   // dynamically updating guardian
   if (guardian && Object.keys(guardian).length > 0) {
     Object.keys(guardian).forEach(key => {
-      const nameKey = `guardian.${key}`;
-      (updatedStudentData as any)[nameKey] = guardian[key as keyof typeof name];
+      const guardianKey = `guardian.${key}`;
+      (updatedStudentData as any)[guardianKey] =
+        guardian[key as keyof typeof guardian];
     });
   }
 
-  // dynamically updating guardian
+  // dynamically updating localGuardian
   if (localGuardian && Object.keys(localGuardian).length > 0) {
     Object.keys(localGuardian).forEach(key => {
-      const nameKey = `guardian.${key}`;
-      (updatedStudentData as any)[nameKey] =
-        localGuardian[key as keyof typeof name];
+      const localGuardianKey = `guardian.${key}`;
+      (updatedStudentData as any)[localGuardianKey] =
+        localGuardian[key as keyof typeof localGuardian];
     });
   }
-  return await Student.findOneAndUpdate({ _id: studentId }, payload, {
+  return await Student.findOneAndUpdate({ id: studentId }, updatedStudentData, {
     new: true,
   });
 };
