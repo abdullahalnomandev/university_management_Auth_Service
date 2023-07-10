@@ -30,7 +30,7 @@ export const findLastFacultyId = async () => {
   return lastFaculty?.id ? lastFaculty.id.substring(2) : undefined;
 };
 
-export const generateFacultyId = async (): Promise<string | undefined> => {
+export const generateFacultyId = async (): Promise<string> => {
   const currentId =
     (await findLastFacultyId()) || (0).toString().padStart(5, '0');
   let incrementedId = (Number(currentId) + 1).toString().padStart(5, '0');
