@@ -5,6 +5,7 @@ import { FacultyValidation } from './faculty.validation';
 const router = express.Router();
 
 router.get('/:id', StudentController.getSingleFaculty);
+router.delete('/:id', StudentController.deleteFaculty);
 router.get('/', StudentController.getSingleFaculty);
 // router.delete('/:id',StudentController.deleteStudent);
 

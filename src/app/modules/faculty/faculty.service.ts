@@ -5,6 +5,8 @@ import ApiError from '../../../errors/ApiError';
 import { paginationHelper } from '../../../helpers/paginationHeloper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOption } from '../../../interfaces/pagenation';
+import { IStudent } from '../student/student.interface';
+import { User } from '../users/user.model';
 import { facultySearchableFields } from './faculty.constant';
 import { IFaculty, IFacultyFilters } from './faculty.interface';
 import { Faculty } from './faculty.model';
@@ -108,9 +110,13 @@ const updateFaculty = async (
 };
 
 const deleteFaculty = async (facultyId: string): Promise<IFaculty | null> => {
-  return await Faculty.findByIdAndDelete(facultyId)
+  const faculty = await Faculty.findByIdAndDelete(facultyId)
     .populate('academicDepartment')
     .populate('academicFaculty');
+
+  (await User.findOneAndDelete({ id: faculty?.id })) as IStudent;
+
+  return faculty;
 };
 
 export const FacultyService = {
