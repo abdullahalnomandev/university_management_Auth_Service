@@ -26,10 +26,10 @@ const userSchema = new Schema<IUser>(
       type: ObjectId,
       ref: 'Faculty',
     },
-    // admin:{
-    //   type:ObjectId,
-    //   ref:'Admin'
-    // },
+    admin: {
+      type: ObjectId,
+      ref: 'Admin',
+    },
   },
   {
     timestamps: true,
