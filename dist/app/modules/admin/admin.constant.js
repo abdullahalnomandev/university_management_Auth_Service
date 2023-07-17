@@ -1,5 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
 exports.adminFilterableFields = exports.bloodGroup = exports.gender = void 0;
 exports.gender = ['male', 'female'];
 exports.bloodGroup = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
@@ -12,11 +12,11 @@ exports.bloodGroup = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
 //   'name.lastName',
 // ];
 exports.adminFilterableFields = [
-    'searchTerm',
-    'id',
-    'bloodGroup',
-    'email',
-    'contactNo',
-    'academicYear',
-    'emergencyContactNo',
+  'searchTerm',
+  'id',
+  'bloodGroup',
+  'email',
+  'contactNo',
+  'academicYear',
+  'emergencyContactNo',
 ];
