@@ -1,6 +1,6 @@
 import { SortOrder } from 'mongoose';
 import ApiError from '../../../errors/ApiError';
-import { paginationHelper } from '../../../helpers/paginationHeloper';
+import { paginationHelper } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOption } from '../../../interfaces/pagenation';
 import {

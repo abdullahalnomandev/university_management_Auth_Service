@@ -24,7 +24,6 @@ const createStudent = async (
     user.password = config.default_student_password as string;
   }
 
-
   // set role
   user.role = 'student';
   const academicSemester = await AcademicSemester.findById(
@@ -99,8 +98,6 @@ const createFaculty = async (
     const id = await generateFacultyId();
     user.id = id;
     faculty.id = id;
-
- 
 
     const newStudent = await Faculty.create([faculty], { session });
     if (!newStudent.length) {

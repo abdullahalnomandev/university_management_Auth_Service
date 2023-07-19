@@ -13,7 +13,7 @@
   ],
 
   "rules": {
-    "no-unused-vars": "error",
+    "no-unused-vars": "warn",
     "prefer-const": "error",
     "no-console": "warn",
     "no-undef": "error",

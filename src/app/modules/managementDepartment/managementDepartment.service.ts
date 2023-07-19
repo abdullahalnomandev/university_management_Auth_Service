@@ -1,5 +1,5 @@
 import { SortOrder } from 'mongoose';
-import { paginationHelper } from '../../../helpers/paginationHeloper';
+import { paginationHelper } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOption } from '../../../interfaces/pagenation';
 import { managementDepartmentFields } from './managementDepartment.constant';
