@@ -9,7 +9,6 @@ import { StudentService } from './student.service';
 
 const getAllStudents = catchAsync(async (req: Request, res: Response) => {
   const filters = pick(req.query, studentFilterableFields);
-
   const paginationOption = pick(req.query, paginationFields);
   const result = await StudentService.getAllStudents(filters, paginationOption);
   sendResponse(res, {
