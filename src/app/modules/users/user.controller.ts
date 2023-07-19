@@ -7,7 +7,7 @@ import { UserService } from './user.service';
 const createStudent: RequestHandler = catchAsync(
   async (req: Request, res: Response) => {
 
-    console.log("cookie",req.cookies);
+    console.log("cookie-s",req.cookies);
     
     const { student, ...userData } = req.body;
     const result = await UserService.createStudent(student, userData);
@@ -22,6 +22,8 @@ const createStudent: RequestHandler = catchAsync(
 
 const createFaculty: RequestHandler = catchAsync(
   async (req: Request, res: Response) => {
+    console.log("cookie-f",req.cookies);
+
     const { faculty, ...userData } = req.body;
     const result = await UserService.createFaculty(faculty, userData);
     sendResponse(res, {
