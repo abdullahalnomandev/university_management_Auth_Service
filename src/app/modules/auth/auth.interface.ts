@@ -8,6 +8,6 @@ export type ILoginUserResponse = {
   needsPasswordChange: boolean;
 };
 
- export type IRefreshTokenResponse = {
+export type IRefreshTokenResponse = {
   accessToken: string;
- }
+};

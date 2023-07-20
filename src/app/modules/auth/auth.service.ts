@@ -4,7 +4,11 @@ import config from '../../../config';
 import ApiError from '../../../errors/ApiError';
 import { jwtHelper } from '../../../helpers/jwtHelpers';
 import { User } from '../users/user.model';
-import { ILoginUser, ILoginUserResponse, IRefreshTokenResponse } from './auth.interface';
+import {
+  ILoginUser,
+  ILoginUserResponse,
+  IRefreshTokenResponse,
+} from './auth.interface';
 const loginUser = async (payload: ILoginUser): Promise<ILoginUserResponse> => {
   const { id, password } = payload;
   const user = new User();
@@ -51,16 +55,18 @@ const loginUser = async (payload: ILoginUser): Promise<ILoginUserResponse> => {
   };
 };
 
-const refreshToken = async (token: string):Promise<IRefreshTokenResponse> => {
-
+const refreshToken = async (token: string): Promise<IRefreshTokenResponse> => {
   //verify token
   let verifiedToken = null;
   try {
-     verifiedToken = jwtHelper.verifiedToken(token,config.jwt.refresh_secret as string)     
+    verifiedToken = jwtHelper.verifiedToken(
+      token,
+      config.jwt.refresh_secret as string
+    );
   } catch (error) {
     throw new ApiError(httpStatus.FORBIDDEN, 'Invalid refresh token');
   }
-  
+
   const { userId } = verifiedToken;
 
   const user = new User();
@@ -75,10 +81,9 @@ const refreshToken = async (token: string):Promise<IRefreshTokenResponse> => {
     config.jwt.secret as Secret,
     config.jwt.expires_in as string
   );
-  
 
   return {
-    accessToken: newAccessToken
+    accessToken: newAccessToken,
   };
 };
 

@@ -23,7 +23,7 @@ const createFaculty: RequestHandler = catchAsync(
   }
 );
 
-const getAllFaculty = catchAsync(async (req: Request, res: Response) => {  
+const getAllFaculty = catchAsync(async (req: Request, res: Response) => {
   const filters = pick(req.query, academicFacultyFilterableFields);
   const paginationOption = pick(req.query, paginationFields);
   const result = await AcademicFacultyService.getAllFaculty(
@@ -34,8 +34,7 @@ const getAllFaculty = catchAsync(async (req: Request, res: Response) => {
     statusCode: httpStatus.OK,
     status: 'success',
     meta: result.meta,
-    data: result.data
-
+    data: result.data,
   });
 });
 

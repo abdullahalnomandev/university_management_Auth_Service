@@ -10,10 +10,10 @@ const createToken = (
   });
 };
 
-const verifiedToken =  (token: string,secret:Secret):JwtPayload => {
+const verifiedToken = (token: string, secret: Secret): JwtPayload => {
   return jwt.verify(token, secret) as JwtPayload;
-}
+};
 export const jwtHelper = {
   createToken,
-  verifiedToken
+  verifiedToken,
 };

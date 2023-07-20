@@ -43,7 +43,7 @@ const refreshToken = catchAsync(async (req: Request, res: Response) => {
     statusCode: httpStatus.OK,
     status: 'success',
     message: 'User logged in successfully',
-    data:result
+    data: result,
   });
 });
 

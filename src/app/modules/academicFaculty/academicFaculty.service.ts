@@ -70,7 +70,7 @@ const getAllFaculty = async (
       limit,
       total: count,
     },
-    data: result
+    data: result,
   };
 };
 
