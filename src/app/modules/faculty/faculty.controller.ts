@@ -8,6 +8,9 @@ import { facultyFilterableFields } from './faculty.constant';
 import { FacultyService } from './faculty.service';
 
 const getAllFaculty = catchAsync(async (req: Request, res: Response) => {
+
+  console.log(req.headers.authorization);
+  
   const filters = pick(req.query, facultyFilterableFields);
 
   const paginationOption = pick(req.query, paginationFields);
@@ -16,7 +19,7 @@ const getAllFaculty = catchAsync(async (req: Request, res: Response) => {
     statusCode: httpStatus.OK,
     status: 'success',
     meta: result.meta,
-    data: result.data,
+    data: result.data
   });
   // next();
 });

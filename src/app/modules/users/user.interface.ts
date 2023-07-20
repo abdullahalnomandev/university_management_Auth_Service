@@ -16,12 +16,7 @@ export type IUser = {
 
 export type IUserMethods = {
   // isUserExist(id:string): Promise<Partial<IUser | null>>;
-  isUserExist(
-    id: string
-  ): Promise<Pick<
-    IUser,
-    'id' | 'password' | 'needsPasswordChange' | 'role'
-  > | null>;
+  isUserExist( id: string): Promise<Pick< IUser, 'id' | 'password' | 'needsPasswordChange' | 'role'> | null>;
   isPasswordMatch(
     givenPassword: string,
     savedPassword: string

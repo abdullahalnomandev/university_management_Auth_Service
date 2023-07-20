@@ -5,6 +5,7 @@ import catchAsync from '../../../shared/catchAsync';
 import pick from '../../../shared/pick';
 import sendResponse from '../../../shared/sendResponse';
 import { academicFacultyFilterableFields } from './academicFaculty.constant';
+import { IAcademicFaculty } from './academicFaculty.interface';
 import { AcademicFacultyService } from './academicFaculty.service';
 
 const createFaculty: RequestHandler = catchAsync(
@@ -13,7 +14,7 @@ const createFaculty: RequestHandler = catchAsync(
     const result = await AcademicFacultyService.createFaculty(
       academicSemesterData
     );
-    sendResponse(res, {
+    sendResponse<IAcademicFaculty>(res, {
       statusCode: httpStatus.OK,
       status: 'success',
       message: 'Academic Faculty created successfully',
@@ -22,20 +23,20 @@ const createFaculty: RequestHandler = catchAsync(
   }
 );
 
-const getAllFaculty = catchAsync(async (req: Request, res: Response) => {
+const getAllFaculty = catchAsync(async (req: Request, res: Response) => {  
   const filters = pick(req.query, academicFacultyFilterableFields);
   const paginationOption = pick(req.query, paginationFields);
   const result = await AcademicFacultyService.getAllFaculty(
     filters,
     paginationOption
   );
-  sendResponse(res, {
+  sendResponse<IAcademicFaculty[]>(res, {
     statusCode: httpStatus.OK,
     status: 'success',
     meta: result.meta,
-    data: result.data,
+    data: result.data
+
   });
-  // next();
 });
 
 // const getSingleSemester = catchAsync(async (req: Request, res: Response) => {
