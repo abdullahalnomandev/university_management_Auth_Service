@@ -49,9 +49,6 @@ const refreshToken = catchAsync(async (req: Request, res: Response) => {
 
 const changePassword = catchAsync(async (req: Request, res: Response) => {
   const user = req.user;
-
-  console.log(req.user);
-
   const { ...passwordData } = req.body;
   await AuthService.changePassword(user, passwordData);
 
@@ -66,5 +63,3 @@ export const AuthController = {
   refreshToken,
   changePassword,
 };
-
-// login --> default password --> change password -->needsPasswordChange --> true | false
