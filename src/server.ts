@@ -5,7 +5,7 @@ import app from './app';
 import config from './config';
 
 process.on('uncaughtException', error => {
-  console.log(error);
+  console.log(error)s;
   process.exit(1);
 });
 let server: Server;
