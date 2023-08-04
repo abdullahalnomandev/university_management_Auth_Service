@@ -5,10 +5,10 @@ import app from './app';
 import config from './config';
 
 process.on('uncaughtException', error => {
-  console.log(error)s;
   process.exit(1);
 });
 let server: Server;
+
 
 const connectToDatabase = async () => {
   try {
