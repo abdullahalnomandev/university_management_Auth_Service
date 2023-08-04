@@ -52,7 +52,6 @@ const createStudent = async (
       throw new ApiError(httpStatus.BAD_REQUEST, 'Failed to create user.');
     }
     newUserAllData = newUser[0];
-
     await session.commitTransaction();
     await session.endSession();
   } catch (error) {
