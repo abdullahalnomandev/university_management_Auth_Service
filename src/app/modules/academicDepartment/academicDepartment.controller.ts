@@ -22,7 +22,6 @@ const createDepartment: RequestHandler = catchAsync(
     });
   }
 );
-aaaaaaaaaaaaaa
 const getAllDepartment = catchAsync(async (req: Request, res: Response) => {
   const filters = pick(req.query, academicFacultyFilterableFields);
   const paginationOption = pick(req.query, paginationFields);
