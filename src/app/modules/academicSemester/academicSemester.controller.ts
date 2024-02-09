@@ -42,10 +42,10 @@ const getAllSemesters = catchAsync(async (req: Request, res: Response) => {
 
 const getSingleSemester = catchAsync(async (req: Request, res: Response) => {
   const result = await AcademicSemesterService.getSingleSemester(req.params.id);
-  sendResponse(res, {
+  sendResponse(res, { 
     statusCode: httpStatus.OK,
     status: 'success',
-    data: result,
+    data: result, 
   });
   // next();
 });

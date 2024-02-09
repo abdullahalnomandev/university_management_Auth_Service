@@ -2,7 +2,9 @@ import 'colorts/lib/string';
 import { Server } from 'http';
 import mongoose from 'mongoose';
 import app from './app';
+import subscribeTOEvents from './app/events';
 import config from './config';
+import { RedisClient } from './shared/redis';
 
 process.on('uncaughtException', error => {
   process.exit(1);
@@ -12,6 +14,9 @@ let server: Server;
 
 const connectToDatabase = async () => {
   try {
+    await RedisClient.connect().then(() =>{
+      subscribeTOEvents();
+    })
     await mongoose.connect(config.database_url as string);
     console.log('Database connected successfully.'.green);
 
