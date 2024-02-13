@@ -123,7 +123,6 @@ const createSemesterFromEvent = async (e: IAcademicSemesterCreatedEvent): Promis
 };
 
 const updateOneIntoDBFromEvent = async (e:IAcademicSemesterCreatedEvent) : Promise<void> => {
-  
    await AcademicSemester.findOneAndUpdate(
     {syncId:e.id},
     {
@@ -137,6 +136,13 @@ const updateOneIntoDBFromEvent = async (e:IAcademicSemesterCreatedEvent) : Promi
     }
    )
 }
+
+const deleteSemesterFromEvent = async (e:IAcademicSemesterCreatedEvent):Promise<void> =>{
+
+  await AcademicSemester.findOneAndDelete({ syncId:e.id});
+
+}
+
 export const AcademicSemesterService = {
   createSemester,
   getAllSemesters,
@@ -144,5 +150,6 @@ export const AcademicSemesterService = {
   updateSemester,
   deleteSemester,
   createSemesterFromEvent,
-  updateOneIntoDBFromEvent
+  updateOneIntoDBFromEvent,
+  deleteSemesterFromEvent
 };
