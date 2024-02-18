@@ -5,6 +5,7 @@ import { IPaginationOption } from '../../../interfaces/pagenation';
 import { academicFacultyFields } from './academicFaculty.constant';
 import {
   IAcademicFaculty,
+  IAcademicFacultyEvent,
   IAcademicFacultyFilter,
 } from './academicFaculty.interface';
 import { AcademicFaculty } from './academicFaculty.model';
@@ -95,10 +96,20 @@ const deleteFaculty = async (
   return await AcademicFaculty.findByIdAndDelete(semesterId);
 };
 
+
+const createFacultyFromEvent = async (e:IAcademicFacultyEvent) :Promise<void> => {
+   await AcademicFaculty.create({
+     title: e.title,
+     syncId: e.id
+   })
+}
+
 export const AcademicFacultyService = {
   createFaculty,
   getAllFaculty,
   updateFaculty,
   deleteFaculty,
+  createFacultyFromEvent,
   //   getSingleSemester,
 };
+
