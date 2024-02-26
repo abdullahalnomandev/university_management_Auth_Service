@@ -2,6 +2,7 @@ import { default as httpStatus } from 'http-status';
 import mongoose from 'mongoose';
 import config from '../../../config';
 import ApiError from '../../../errors/ApiError';
+import { RedisClient } from '../../../shared/redis';
 import { AcademicSemester } from '../academicSemester/academicSemester.model';
 import { IAdmin } from '../admin/admin.interface';
 import { Admin } from '../admin/admin.model';
@@ -9,6 +10,7 @@ import { IFaculty } from '../faculty/faculty.interface';
 import { Faculty } from '../faculty/faculty.model';
 import { IStudent } from '../student/student.interface';
 import { Student } from '../student/student.model';
+import { EVENT_STUDENT_CREATED } from './user.constant';
 import { IUser } from './user.interface';
 import { User } from './user.model';
 import {
@@ -26,9 +28,7 @@ const createStudent = async (
 
   // set role
   user.role = 'student';
-  const academicSemester = await AcademicSemester.findById(
-    student.academicSemester
-  );
+  const academicSemester = await AcademicSemester.findById(student.academicSemester);
 
   let newUserAllData = null;
   const session = await mongoose.startSession();
@@ -75,6 +75,9 @@ const createStudent = async (
         },
       ],
     });
+    if(newUserAllData){
+      await RedisClient.publish(EVENT_STUDENT_CREATED,JSON.stringify(newUserAllData.student));
+    }
     return newUserAllData;
   }
 };
@@ -158,7 +161,7 @@ const createAdmin = async (
     if (!newStudent.length) {
       throw new ApiError(httpStatus.BAD_REQUEST, 'Failed to create student.');
     }
-    
+
     // set student  _id into user.student
     user.admin = newStudent[0]._id;
     const newUser = await User.create([user], { session });
