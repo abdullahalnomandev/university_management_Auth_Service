@@ -158,7 +158,7 @@ const createAdmin = async (
     if (!newStudent.length) {
       throw new ApiError(httpStatus.BAD_REQUEST, 'Failed to create student.');
     }
-
+    
     // set student  _id into user.student
     user.admin = newStudent[0]._id;
     const newUser = await User.create([user], { session });

@@ -3,6 +3,7 @@ import { IAcademicFaculty } from '../academicFaculty/academicFaculty.interface';
 
 export type IAcademicDepartment = {
   title: string;
+  syncId?:string;
   academicFaculty: Types.ObjectId | IAcademicFaculty;
 };
 

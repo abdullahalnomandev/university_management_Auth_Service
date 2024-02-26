@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.post(
   '/create-academic-semester',
-  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  // auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
   validateRequest(
     AcademicSemesterValidation.createAcademicSemesterUserZodSchema
   ),
@@ -16,12 +16,12 @@ router.post(
 );
 router.get(
   '/:id',
-  auth(
-    ENUM_USER_ROLE.SUPER_ADMIN,
-    ENUM_USER_ROLE.ADMIN,
-    ENUM_USER_ROLE.FACULTY,
-    ENUM_USER_ROLE.STUDENT
-  ),
+  // auth(
+  //   ENUM_USER_ROLE.SUPER_ADMIN,
+  //   ENUM_USER_ROLE.ADMIN,
+  //   ENUM_USER_ROLE.FACULTY,
+  //   ENUM_USER_ROLE.STUDENT
+  // ),
   AcademicSemesterController.getSingleSemester
 );
 router.patch(
@@ -40,12 +40,12 @@ router.delete(
 );
 router.get(
   '/',
-  auth(
-    ENUM_USER_ROLE.SUPER_ADMIN,
-    ENUM_USER_ROLE.ADMIN,
-    ENUM_USER_ROLE.FACULTY,
-    ENUM_USER_ROLE.STUDENT
-  ),
+  // auth(
+  //   ENUM_USER_ROLE.SUPER_ADMIN,
+  //   ENUM_USER_ROLE.ADMIN,
+  //   ENUM_USER_ROLE.FACULTY,
+  //   ENUM_USER_ROLE.STUDENT
+  // ),
   AcademicSemesterController.getAllSemesters
 );
 

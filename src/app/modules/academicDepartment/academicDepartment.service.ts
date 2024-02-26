@@ -99,7 +99,7 @@ const getAllDepartment = async (
 // };
 
 const createDepartmentFromEvent = async ( e: IAcademicDepartmentEvent): Promise<void> => {
-  const academicFaculty = await AcademicFaculty.findOne({  syncId: e.academicFacultyId});
+  const academicFaculty = await AcademicFaculty.findOne({ syncId: e.academicFacultyId});
   const payload = {
     title: e.title,
     academicFaculty: academicFaculty?._id,

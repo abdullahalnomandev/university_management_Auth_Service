@@ -12,9 +12,13 @@ const academicDepartmentSchema = new Schema<IAcademicDepartment>(
     },
     academicFaculty: {
       type: Schema.Types.ObjectId,
-      ref: 'academicFaculty',
+      ref: 'AcademicFaculty',
       required: true,
     },
+    syncId:{
+      type:String,
+      unique: true
+    }
   },
   {
     timestamps: true,
