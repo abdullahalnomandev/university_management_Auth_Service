@@ -114,6 +114,6 @@ export const AcademicDepartmentService = {
   getAllDepartment,
   // updateDepartment,
   // deleteDepartment,
-  //   getSingleSemester,
+  // getSingleSemester,
   createDepartmentFromEvent,
 };

@@ -5,9 +5,13 @@ import ApiError from '../../../errors/ApiError';
 import { paginationHelper } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOption } from '../../../interfaces/pagenation';
+import { RedisClient } from '../../../shared/redis';
 import { IStudent } from '../student/student.interface';
 import { User } from '../users/user.model';
-import { facultySearchableFields } from './faculty.constant';
+import {
+  EVENT_FACULTY_UPDATED,
+  facultySearchableFields,
+} from './faculty.constant';
 import { IFaculty, IFacultyFilters } from './faculty.interface';
 import { Faculty } from './faculty.model';
 
@@ -94,8 +98,6 @@ const updateFaculty = async (
 
   const updatedFacultyData: Partial<IFaculty> = { ...FacultyData };
 
-  // console.log(guardian, localGuardian);
-
   // dynamically updating name
   if (name && Object.keys(name).length > 0) {
     Object.keys(name).forEach(key => {
@@ -104,9 +106,20 @@ const updateFaculty = async (
     });
   }
 
-  return await Faculty.findOneAndUpdate({ id: facultyId }, updatedFacultyData, {
-    new: true,
-  });
+  const result = await Faculty.findOneAndUpdate(
+    { id: facultyId },
+    updatedFacultyData,
+    {
+      new: true,
+    }
+  )
+    .populate('academicFaculty')
+    .populate('academicDepartment');
+
+  if (result) {
+    await RedisClient.publish(EVENT_FACULTY_UPDATED, JSON.stringify(result));
+  }
+  return result;
 };
 
 const deleteFaculty = async (facultyId: string): Promise<IFaculty | null> => {
