@@ -1,8 +1,12 @@
 import httpStatus from 'http-status';
 import { JwtPayload, Secret } from 'jsonwebtoken';
 import config from '../../../config';
+import { ENUM_USER_ROLE } from '../../../enums/user';
 import ApiError from '../../../errors/ApiError';
 import { jwtHelper } from '../../../helpers/jwtHelpers';
+import { Admin } from '../admin/admin.model';
+import { Faculty } from '../faculty/faculty.model';
+import { Student } from '../student/student.model';
 import { User } from '../users/user.model';
 import {
   IChangPassword,
@@ -10,6 +14,8 @@ import {
   ILoginUserResponse,
   IRefreshTokenResponse,
 } from './auth.interface';
+import { sendEmail } from './sendResetMail';
+
 const loginUser = async (payload: ILoginUser): Promise<ILoginUserResponse> => {
   const { id, password } = payload;
   const user = new User();
@@ -135,8 +141,58 @@ const changePassword = async (
   //updating using save()
 };
 
+
+const forgotPassword = async (payload: { id: string }) => {
+
+  const user = await User.findOne({ id: payload.id }, { id: 1, role: 1 });
+
+  if (!user) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'User does not exist');
+  }
+
+  let profile = null;
+
+  if (user.role === ENUM_USER_ROLE.ADMIN) {
+    profile = await Admin.findOne({ id: user.id })
+  }
+
+  else if (user.role === ENUM_USER_ROLE.FACULTY) {
+    profile = await Faculty.findOne({ id: user.id })
+  }
+  else if (user.role === ENUM_USER_ROLE.STUDENT) {
+    profile = await Student.findOne({ id: user.id })
+  }
+
+  if (!profile) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Profile not found');
+  }
+  if (!profile.email) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Email not found');
+  }
+  const passwordResetToken = jwtHelper.createResetToken({ id: user.id }, config.jwt.secret as string, "5m");
+
+  const resetLlink: string = config.reset_link + `token=${passwordResetToken}`;
+  await sendEmail(profile.email, `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px; background-color: #f9f9f9;">
+        <h2 style="color: #333;">Password Reset Request</h2>
+        <p style="color: #555;">Hi, ${profile.name.firstName},</p>
+        <p style="color: #555;">We received a request to reset your password. You can reset it using the link below:</p>
+        <p style="text-align: center;">
+          <a href=${resetLlink} style="background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Reset Password</a>
+        </p>
+        <p style="color: #555;">If you did not request a password reset, please ignore this email.</p>
+        <p style="color: #555;">Thank you,</p>
+        <p style="color: #555;">The Support Team</p>
+      </div>
+  `);
+
+  return resetLlink;
+}
+//  ncwz zlis hbsj xbbp
+
 export const AuthService = {
   loginUser,
   refreshToken,
   changePassword,
+  forgotPassword
 };

@@ -21,6 +21,9 @@ export default {
     url: process.env.REDIS_URL,
     expires_in:process.env.REDIS_TOKEN_EXPIRES_IN,
   },
+  reset_link: process.env.RSET_PASS_UI_LINK,
+  SMTP_PASSWORD:process.env.SMTP_PASSWORD,
+  SMTP_EMIAL:process.env.SMTP_EMIAL
 };
 
 // cwd = current directory;

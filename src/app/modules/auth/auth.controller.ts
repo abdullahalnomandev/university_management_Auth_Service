@@ -3,6 +3,7 @@ import httpStatus from 'http-status';
 import config from '../../../config';
 import catchAsync from '../../../shared/catchAsync';
 import sendResponse from '../../../shared/sendResponse';
+import { IUser } from '../users/user.interface';
 import { ILoginUserResponse, IRefreshTokenResponse } from './auth.interface';
 import { AuthService } from './auth.service';
 
@@ -58,8 +59,20 @@ const changePassword = catchAsync(async (req: Request, res: Response) => {
     message: 'Password updated successfully',
   });
 });
+
+const forgotPassword = catchAsync(async (req: Request, res: Response) => {
+ 
+   const result = await AuthService.forgotPassword(req.body)
+
+  sendResponse<Partial<IUser>>(res, {
+    statusCode: httpStatus.OK,
+    status: 'success',
+    message: result
+  });
+});
 export const AuthController = {
   loginUser,
   refreshToken,
   changePassword,
+  forgotPassword
 };
