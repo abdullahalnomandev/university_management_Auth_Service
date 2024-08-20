@@ -1,3 +1,4 @@
+import bcrypt from 'bcrypt';
 import httpStatus from 'http-status';
 import { JwtPayload, Secret } from 'jsonwebtoken';
 import config from '../../../config';
@@ -8,6 +9,7 @@ import { Admin } from '../admin/admin.model';
 import { Faculty } from '../faculty/faculty.model';
 import { Student } from '../student/student.model';
 import { User } from '../users/user.model';
+
 import {
   IChangPassword,
   ILoginUser,
@@ -169,9 +171,9 @@ const forgotPassword = async (payload: { id: string }) => {
   if (!profile.email) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Email not found');
   }
-  const passwordResetToken = jwtHelper.createResetToken({ id: user.id }, config.jwt.secret as string, "5m");
+  const passwordResetToken = jwtHelper.createResetToken({ id: user.id }, config.jwt.secret as string, "50m");
 
-  const resetLlink: string = config.reset_link + `token=${passwordResetToken}`;
+  const resetLlink: string = config.reset_link + `?token=${passwordResetToken}`;
   await sendEmail(profile.email, `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px; background-color: #f9f9f9;">
         <h2 style="color: #333;">Password Reset Request</h2>
@@ -186,13 +188,38 @@ const forgotPassword = async (payload: { id: string }) => {
       </div>
   `);
 
-  return resetLlink;
+  // return {
+  //   message:"Please Check your email."
+  // };
 }
-//  ncwz zlis hbsj xbbp
 
+
+const resetPassword = async (payload:{id:string,newPassword:string},token:string) => {
+  console.log("Reset Password",payload,token);
+  const {id,newPassword} = payload;
+  const user = await User.findOne({id},{id:1})
+ 
+   if(!user) {
+     throw new ApiError(httpStatus.NOT_FOUND, 'User does not exist');
+   }
+
+   const isVerified = await jwtHelper.verifiedToken(token,config.jwt.secret as string);
+
+   if(!isVerified){
+    throw new ApiError(httpStatus.BAD_GATEWAY, 'Invalid token');
+   }
+
+   const password = await bcrypt.hash(newPassword,Number(config.bycrypt_salt_rounds));
+
+    if(isVerified && password){
+      await User.updateOne({id}, {password})
+    }
+   console.log("password: " , password)
+}
 export const AuthService = {
   loginUser,
   refreshToken,
   changePassword,
-  forgotPassword
+  forgotPassword,
+  resetPassword
 };
